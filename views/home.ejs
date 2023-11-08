@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Strona</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <script>
+      const stringifyJSON = async (elem) => {
+        try {
+          const stringElement = elem.value.toString();
+          const dajConst = await fetch("http://localhost:8080/card", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ stringElement: stringElement }),
+          });
+          const result = await dajConst;
+          console.log(result);
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+    </script>
+    <div style="display: flex; width: 80%; flex-wrap: wrap; margin: 0 auto">
+      <% rows.forEach((elem,idx)=>{ %>
+      <section style="background-color: #eee; flex: 1 1 25%; margin: 10px">
+        <div class="card">
+          <div class="d-flex justify-content-between p-3">
+            <p class="lead mb-0">Today's Combo Offer</p>
+            <div
+              class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+              style="width: 35px; height: 35px"
+            >
+              <p class="text-white mb-0 small"><%= elem.id %></p>
+            </div>
+          </div>
+          <img
+            style="width: 250px; height: 250px"
+            src="<%= elem.image %>.jpg"
+            class="card-img-top"
+            alt="Laptop"
+          />
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="mb-0"><%= elem.productName %></h5>
+              <h5 class="text-dark mb-0">$<%= elem.price %></h5>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2">
+              <p class="text-muted mb-0">
+                Available: <span class="fw-bold"><%= elem.itemsNumber %></span>
+              </p>
+              <div class="ms-auto text-warning">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <button
+                value="<%= idx%>"
+                onclick="stringifyJSON(this)"
+                type="button"
+                class="btn btn-primary"
+              >
+                Buy now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <% }) %>
+      <footer>
+        <button><a href="/basket">Koszyk</a></button>
+      </footer>
+    </div>
+  </body>
+</html>

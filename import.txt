@@ -1,0 +1,43 @@
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `productName` varchar(60) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `itemsNumber` int(11) NOT NULL,
+  `image` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `products`
+--
+
+INSERT INTO `products` (`id`, `productName`, `price`, `itemsNumber`, `image`) VALUES
+(1, 'Atorvastatin', '20', 200, 'atorvastatin'),
+(2, 'Levothyroxine', '30', 130, 'levothyroxine'),
+(3, 'Metformin', '99', 32, 'metformin'),
+(4, 'GLisinopril', '55', 1233, 'lisinopril'),
+(5, 'Amlodipine', '10', 1000, 'amlodipine'),
+(6, 'Metoprolol', '105', 10, 'metoprolol'),
+(7, 'Albuterol', '888', 155, 'albuterol'),
+(8, 'Omeprazole', '105', 1050, 'omeprazole'),
+(9, 'Losartan', '105', 120, 'losartan'),
+(10, 'Gabapentin', '56', 66, 'gabapentin');
+
+--
+-- Indeksy dla zrzutÃ³w tabel
+--
+
+--
+-- Indeksy dla tabeli `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT dla zrzuconych tabel
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
